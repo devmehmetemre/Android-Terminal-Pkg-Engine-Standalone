@@ -21,7 +21,7 @@ Open any terminal emulator (like Termux or Pkg Terminal) and type:
 ```bash
 su
 pkg <package_name>
-```bash
+```
 
 ⚠️ Notes
 
