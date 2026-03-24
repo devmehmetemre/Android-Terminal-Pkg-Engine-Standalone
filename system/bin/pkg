@@ -1,1 +1,44 @@
+#!/system/bin/sh
+# Mehmet Emre - Pkg Engine Global Stable
+
+APP=$1
+TEMP="/sdcard/downloaded_app.apk"
+WGET_ENGINE="/system/bin/wget_engine"
+
+[ "$1" == "install" ] && APP=$2
+
+if [ -z "$APP" ]; then
+    echo "[-] Usage: pkg <package_name>"
+    echo "[-] Example: pkg com.spotify.music"
+    exit 1
+fi
+
+echo "[*] Querying package: $APP"
+URL="https://d.apkpure.com/b/APK/${APP}?version=latest"
+
+echo "[+] 403 Bypass Active. Starting Download..."
+
+# Downloading with 403 Bypass and Live Progress
+$WGET_ENGINE --no-check-certificate -t 10 -c \
+      --user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" \
+      --header="Referer: https://apkpure.com/" \
+      --progress=bar:force \
+      "$URL" -O "$TEMP"
+
+if [ $? -eq 0 ] && [ -s "$TEMP" ]; then
+    echo -e "\n[+] Download Complete. Installing..."
+    # Standard install for global compatibility
+    pm install -r -d -g "$TEMP"
+    
+    if [ $? -eq 0 ]; then
+        echo "[SUCCESS] $APP installed successfully!"
+        # Refresh launcher
+        am broadcast -a android.intent.action.PACKAGE_ADDED -d package:$APP > /dev/null
+        rm -f "$TEMP"
+    else
+        echo "[ERROR] Installation failed. You can try manual install: $TEMP"
+    fi
+else
+    echo -e "\n[ERROR] Connection failed or 403 Forbidden persist."
+fi
 
