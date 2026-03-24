@@ -1,0 +1,6 @@
+id=pkg_engine_me
+name=Pkg Engine Standalone
+version=v14.0
+versionCode=14
+author=Mehmet Emre
+description=A standalone terminal tool to download and install APKs directly. Features APKPure 403 bypass and built-in GNU wget.
