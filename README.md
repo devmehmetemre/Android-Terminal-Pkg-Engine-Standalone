@@ -11,7 +11,7 @@ Developed by **Mehmet Emre**.
 - **Live Progress:** Real-time download progress bar in your terminal.
 
 ## 🛠 Installation
-1. Download the `Pkg_Engine_Global_v14.zip` from the [Releases](link-buraya) section.
+1. Download the `Pkg_Engine_Global_v14.zip` from the [Releases](https://github.com/devmehmetemre/Android-Terminal-Pkg-Engine-Standalone/releases/tag/v14.0.0-standalone) section.
 2. Open **Magisk app** or **KernelSU**.
 3. Go to Modules -> Install from storage.
 4. Select the ZIP file and reboot your device.
@@ -21,6 +21,7 @@ Open any terminal emulator (like Termux or Pkg Terminal) and type:
 ```bash
 su
 pkg <package_name>
+```bash
 
 ⚠️ Notes
 
